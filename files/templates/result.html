@@ -1,0 +1,171 @@
+<html>
+<head>
+    <style>
+        .body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+  
+            background-color: #f2ede1;
+            z-index: 0;
+            color: #573111;
+        }
+  
+        .wrapper {
+          display:flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-top: 40px;
+          margin-bottom: 50px;
+          background-color: #f5f2ed;
+          opacity: 100%;
+          border-radius: 20px;
+          z-index: 1;
+          width: 80%;
+          font-family: 'Manrope', sans-serif;
+          padding-bottom: 40px;
+        }
+  
+        .title{
+            display: flex;
+            font-size: 60px;
+            margin-bottom: -10px;
+            font-weight: 750;
+        }
+  
+        .results{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          border: 1px;
+          border-radius: 10px;
+          margin: 5px;
+          margin-bottom: 20px;
+          font-family: 'Manrope', sans-serif;
+        }
+
+        .recipe-name {
+            font-family: 'Manrope', sans-serif;
+            font-size: 25px;
+            font-weight: 550;
+            margin: 15px;
+        }
+
+        .ingredients-list {
+            font-family: 'Manrope', sans-serif;
+            width: 50%;
+        }
+
+        .ingredient-text {
+            font-family: 'Manrope', sans-serif;
+            margin-bottom: -15px;
+            font-weight: 400;
+            font-size: 20px;
+        }
+
+        .ingredient{
+            font-family: 'Manrope', sans-serif;
+            font-size: 15px;
+        }
+  
+        .search-button {
+          font-family: 'Manrope', sans-serif;
+          font-size: 16px;
+          letter-spacing: 2px;
+          text-decoration: none;
+          text-transform: uppercase;
+          color: #573111;
+          background-color: white;
+          cursor: pointer;
+          border: 3px solid;
+          padding: 0.25em 0.5em;
+          box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+          position: relative;
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+        }
+  
+        .search-button:active {
+          box-shadow: 0px 0px 0px 0px;
+          top: 5px;
+          left: 5px;
+        }
+  
+        @media (min-width: 768px) {
+          .search-button {
+            padding: 0.25em 0.75em;
+          }
+        }
+
+        .button-23 {
+        background-color: #e1e8dc;
+        border: 1px solid #573111;
+        border-radius: 8px;
+        box-sizing: border-box;
+        color: #573111;
+        cursor: pointer;
+        display: inline-block;
+        font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 20px;
+        margin: 0;
+        outline: none;
+        padding: 13px 23px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        touch-action: manipulation;
+        transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+        user-select: none;
+        -webkit-user-select: none;
+        width: auto;
+        }
+
+        .button-23:focus-visible {
+        box-shadow: #222222 0 0 0 2px, rgba(255, 255, 255, 0.8) 0 0 0 4px;
+        transition: box-shadow .2s;
+        }
+
+        .button-23:active {
+        background-color: #e2e8df;
+        border-color: #000000;
+        transform: scale(.96);
+        }
+
+        .button-23:disabled {
+        border-color: #e2e8df;
+        color: #e2e8df;
+        cursor: not-allowed;
+        opacity: 1;
+        }
+      </style>
+</head>
+<body class="body">
+    <br>
+    <div class="wrapper">
+        <h1 class="title">Results:</h1>
+            {% for recipe in recipes %}
+                <div class="results">
+                    <div class="recipe-name"><u>{{recipe.recipeName}}</u></div>
+                    
+                    <div class="ingredient-list">
+                        <div class="ingredient-text">Ingredients:</div>
+                        <ul>
+                            {% for ingredient in recipe.ingredients %}
+                                <li class="ingredient">{{ingredient.food}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <a href="{{recipe.urlLink}}"><button class="button-23" role="button">Jump To Recipe -></button></a>
+                </div>
+            {% endfor %}
+            <br>
+            <a href="/"><button class="search-button">back</button></a>
+    </div> 
+</body>
+</html>
